@@ -25,37 +25,6 @@ const styles = {
     },
 };
 
-const tableData = [
-    {
-        name: 'John Smith',
-        status: 'Employed',
-    },
-    {
-        name: 'Randal White',
-        status: 'Unemployed',
-    },
-    {
-        name: 'Stephanie Sanders',
-        status: 'Employed',
-    },
-    {
-        name: 'Steve Brown',
-        status: 'Employed',
-    },
-    {
-        name: 'Joyce Whitten',
-        status: 'Employed',
-    },
-    {
-        name: 'Samuel Roberts',
-        status: 'Employed',
-    },
-    {
-        name: 'Adam Moore',
-        status: 'Employed',
-    },
-];
-
 /**
  * A more complex example, allowing the table height to be set, and key boolean properties to be toggled.
  */
@@ -80,17 +49,15 @@ export default class TableExampleComplex extends Component {
             address: '',
             url: '',
         };
-        this.AAA = this.AAA.bind(this);
+        this.RaisedButtonComponent = this.RaisedButtonComponent.bind(this);
     }
 
     componentWillMount() {
-        console.log('子-componentWillMount')
-        //console.log(this.props.cafeList.length);
+        //console.log('子-componentWillMount')
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        console.log('子-shouldComponentUpdate');
-        console.log(nextState);
+        //console.log('子-shouldComponentUpdate');
         if (nextProps.cafeList.length == 0) {
             return false;
         }
@@ -99,7 +66,7 @@ export default class TableExampleComplex extends Component {
     }
 
     handleOpen = (event) => {
-        this.setState({ 
+        this.setState({
             open: true,
             name: event.name,
             cheap: event.cheap,
@@ -123,14 +90,17 @@ export default class TableExampleComplex extends Component {
     };
 
 
-AAA(x) {
-    return (
-        <RaisedButton label="詳細" onClick={() => this.handleOpen(x)} />
-    )
-}
+    RaisedButtonComponent(item) {
+        return (
+            <RaisedButton
+                label="明細"
+                onClick={() => this.handleOpen(item)}
+            />
+        )
+    }
 
     render() {
-        console.log('子元件render');
+        //console.log('子元件render');
         const actions = [
             <FlatButton
                 label="Cancel"
@@ -159,7 +129,7 @@ AAA(x) {
                             </TableHeaderColumn>
                         </TableRow>
                         <TableRow>
-                            <TableHeaderColumn tooltip="The ID">ID</TableHeaderColumn>
+                            <TableHeaderColumn tooltip="The ID">明細</TableHeaderColumn>
                             <TableHeaderColumn tooltip="咖啡廳名稱">名稱</TableHeaderColumn>
                             <TableHeaderColumn tooltip="咖啡店地址">地址</TableHeaderColumn>
                         </TableRow>
@@ -170,19 +140,11 @@ AAA(x) {
                         showRowHover={this.state.showRowHover}
                         stripedRows={this.state.stripedRows}
                     >
-                        {/* {tableData.map((row, index) => (
-                            <TableRow key={index}>
-                                <TableRowColumn>{index}</TableRowColumn>
-                                <TableRowColumn>{row.name}</TableRowColumn>
-                                <TableRowColumn>{row.status}</TableRowColumn>
-                            </TableRow>
-                        ))} */}
                         {this.props.cafeList.map((row, index) => (
                             <TableRow key={index}>
                                 <TableRowColumn>
-                                    {/* <RaisedButton label="詳細" onClick={this.handleOpen} /> */}
                                     {
-                                        this.AAA(row)
+                                        this.RaisedButtonComponent(row)
                                     }
                                 </TableRowColumn>
                                 <TableRowColumn>{row.name}</TableRowColumn>
@@ -212,9 +174,9 @@ AAA(x) {
                     open={this.state.open}
                     onRequestClose={this.handleClose}
                 >
-                    名稱：{this.state.name}<br/>
-                    評價：{this.state.cheap}<br/>
-                    地址：{this.state.address}
+                    名稱：{this.state.name}<br />
+                    評價：{this.state.cheap}<br />
+                    地址：{this.state.address}<br />
                     網址：<a href={this.state.url}>點我</a>
 
                 </Dialog>

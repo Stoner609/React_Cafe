@@ -40,14 +40,12 @@ class App extends React.Component {
   }
 
   render() {
-    console.log('父層render');
-    console.log(this.state.cafeList);
-
+    //console.log('父層render');
     const isLength = this.state.cafeList.length;
     return (
       <MuiThemeProvider>
         <div>
-          <AppBar title="My AppBar" />
+          <AppBar title="咖啡廳列表" />
           {isLength > 0 ? (
             <TableExampleComplex cafeList={this.state.cafeList}></TableExampleComplex>
           ) : (
