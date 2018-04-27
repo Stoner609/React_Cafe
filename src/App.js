@@ -3,6 +3,7 @@ import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import AppBar from 'material-ui/AppBar';
+import CircularProgress from 'material-ui/CircularProgress';
 
 import TableExampleComplex from './TableExampleComplex'
 
@@ -47,9 +48,11 @@ class App extends React.Component {
         <div>
           <AppBar title="咖啡廳列表" />
           {isLength > 0 ? (
-            <TableExampleComplex cafeList={this.state.cafeList}></TableExampleComplex>
+             <TableExampleComplex cafeList={this.state.cafeList}></TableExampleComplex>
           ) : (
-            <div></div>
+            <div style={{width: '300px', height: '300px', position: 'absolute', left: '50%', top: '20%'}}>
+              <CircularProgress />
+            </div>
           )}
         </div>
       </MuiThemeProvider>
